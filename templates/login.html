@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Log in</h1>
+
+    <form action = '/login' method = "POST">
+        {{form.hidden_tag()}}
+            <p>
+                {{form.username.label(class_="form-label")}}
+                {{form.username(class_="form-control")}}
+            </p>
+            <p>
+                {{form.password.label(class_="form-label")}}
+                {{form.password(class_="form-control")}}
+            </p>
+            
+        <input type="submit" value="Login" class="btn btn-success">
+    </form>
+    <p>If you don't have an account please <a href="/register">register</a></p>
+</div>
+{% endblock %}

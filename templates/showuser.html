@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Users{% endblock %}
+
+{% block content %}
+
+    <div style="display: inline-block">
+        <h1>{{user.first_name}} {{user.last_name}}</h1>
+
+        <a href="/users/{{user.username}}/edit"><button type="button">Edit</button></a> <a href="/users/{{user.username}}/delete"><button type="button">Delete</button></a>
+
+        <h2>Contributed Feedback</h2>
+        <ul>
+            {% for feedback in feedback %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{feedback.title}}</h5>
+                  <p class="card-text">{{feedback.content}}</p>
+                  <a href="/feedback/{{feedback.contributor}}/delete" class="card-link">Delete</a>
+                </div>
+              </div>            
+            {% endfor %}
+        </ul>
+        <a href="/users/{{user.username}}/feedback/add"><button type="button">Contribute new feedback</button>
+    </div>
+
+{% endblock %}
+

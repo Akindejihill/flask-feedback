@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Add a post for {{firstname}} {{lastname}}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Add feedback from {{firstname}} {{lastname}}</h1>
+    <form action = '/users/{{user}}/feedback/new' method = "POST">
+        {{form.hidden_tag()}}
+        {% for field in form 
+            if field.widget.input_type != 'hidden' %}
+            <p>
+                {{field.label(class_='form-label')}}
+                {{field(class_="form-control")}}
+
+                {% for err in field.errors %}
+                    <small class="text-danger">{{err}}</small>
+                {% endfor %}
+            </p>
+        {% endfor %}
+
+        <a href="/users/{{user}}"><button type="button" class="btn btn-secondary">Cancel</button></a>
+        <input type="submit" value="Update" class="btn btn-success">
+        
+    </form>
+</div>
+{% endblock %}
+
